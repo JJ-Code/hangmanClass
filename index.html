@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hangman Fun</title>
+
+  <link rel="icon" href="public/images/world.jpeg">
+  <!-- Stylesheets-->
+  <link rel="stylesheet" type="text/css" href="public/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="public/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="landing--container">
+    <div class="landing--title">
+
+      <h1>World of Hangman!</h1>
+      <p>Click a letter</p><br />
+      <br /><br />
+
+
+        
+              <div class="row">
+      
+                <div class="col-md-4">
+                  <h2>Number of Lives: </h2>
+                  <h2 class="lives-score"> </h2>
+                  <div></div>
+                </div>
+
+                <div class="col-md-4">
+                  <h2>Clue: </h2>
+                  <h2 class="clue"></h2>
+                </div>
+                <div class="col-md-4">
+                  <h2>Score Tracker</h2>
+                  <h3>Wins: </h3>
+                  <h3 class="win-score"> </h3>
+
+                  <h3>Losses: </h3>
+                  <h3 class="loss-score"></h3>
+                </div>
+              </div>
+              
+
+
+
+
+      <!-- ------------------- -->
+      <!-- create space for blank letters -->
+      <div id="word-to-guess"></div>
+
+      <br /><br />
+      <div class="landing--line"> </div>
+      <!-- this is to create clicking board -->
+      <div id="abc-tiles"></div>
+      <!-- <img class="letter" src="public/images/a-title.jpg">
+      <img class="letter" src="public/images/c-title.jpg"> -->
+      <br /> <br />
+      <!-- <div id="search-area">
+        <form id="giphy-form">
+          <input type="text" id="giphy-input"><br> <br>
+          <input class="primary-btn" id="submit-giphy" type="submit" value="Submit">
+        </form>
+      </div> -->
+
+      <div class="landing--line"> </div>
+    </div>
+
+  </div>
+
+
+  <!-- Main Content Area -->
+  <!-- <div class="container">
+        <section>
+            <div class="content">
+                <div class="row">
+                    <h1>Step 2 - Click on giphy to match SCORE to WIN! </h1> <br /><br />
+                    <div class="col-md-4">
+                        <h2>Try to match</h2>
+                        <h2 class="computer-score"> </h2>
+
+                        <div></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h2>Your current score: </h2>
+                        <h2 class="user-score"></h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Score Tracker</h2>
+                        <h3>Wins: </h3>
+                        <h3 class="win-score"> </h3>
+
+                        <h3>Losses: </h3>
+                        <h3 class="loss-score"></h3>
+                    </div>
+                </div>
+
+                GIF RESULTS GAME      -->
+  <!-- <div class="row">
+
+                    <div id="giphy-view"></div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+  
+    </div> -->
+  <!-- end of container -->
+
+  <!-- This is the footer -->
+  <footer>
+    <div class="footer--social">
+      <a href="#" target="_blank"><i class="fab fa-instagram" style="font-size: 1.2em"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href=""><i class="far fa-envelope"></i></a>
+    </div>
+    <div class="footer--bottom">
+      <p class="footer--text">©copyright JJCode | All rights reserved | &amp; development by <a href="#"
+          target="_blank"> JJCode</a></p>
+    </div>
+  </footer>
+
+
+  <!-- Added link to the asset script -->
+  <script type="text/javascript" src="server.js"> </script>
+
+</body>
+
+</html>
