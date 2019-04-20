@@ -40,13 +40,13 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 75em;
+    height: 96em;
 }
 
 .landing--title {
     position: absolute;
     width: 100%;
-    top: 15%;
+    top: 5%;
     text-align: center;
 
 

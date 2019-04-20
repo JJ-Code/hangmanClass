@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/JJ-Code/hangmanClass/issues"
   },
-  "homepage": "https://github.com/JJ-Code/hangmanClass#readme"
+  "homepage": "https://github.com/JJ-Code/hangmanClass#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config.json": "0.0.4",
+    "eslint": "^5.16.0",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7",
+    "sequelize": "^5.5.1"
+  }
 }

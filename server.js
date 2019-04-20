@@ -1,68 +1,33 @@
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-  'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-  't', 'u', 'v', 'w', 'x', 'y', 'z'
-];
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const letterObj = [];
-const letterSplit = ["a", "p", "p", "l", "e"]
+const app = express();
 
+const PORT = process.env.PORT || 8050;
 
-const makeObj = () => {
+const db = require("./models");
 
-  for (let i = 0; i < alphabet.length; i++) {
-    let abcPic = `public/images/${alphabet[i]}-title.jpg`;
-    const tileObj = {
-      letter: alphabet[i],
-      src: abcPic
-    }
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({
+  type: "application/vnd.api+json"
+}));
 
-    letterObj.push(tileObj);
-    console.log(tileObj)
+app.use(express.static("public"));
 
+require("./routes/clients-api-routes.js")(app);
+require("./routes/trainers-api-routes.js")(app);
+require("./routes/html-routes.js")(app);
+require("./routes/login-route.js")(app);
+require("./routes/matching-route.js")(app);
 
-  }
-}
-
-makeObj(alphabet);
-
-
-const makeTiles = (array) => {
-  let abcDiv = document.getElementById('abc-tiles');
-  console.log(array)
-
-  for (let i = 0; i < array.length; i++) {
-    const abcImage = document.createElement("img");
-    abcImage.src = array[i].src;
-    abcImage.setAttribute("data-letter", array[i].letter);
-    abcImage.classList.add("letter");
-    abcDiv.appendChild(abcImage);
-    //document.getElementById("giphy-view").appendChild(giphyDiv);
-    //let tileLetter = `<img class="letter" src="${array[i].src}" data-letter=${array[i].letter}>`;
-    //abcDiv.appendChild(tileLetter);
-    //console.log(tileLetter);
-
-    //console.log(tileObj)
-
-
-  }
-}
-
-makeTiles(letterObj);
-
-
-const makeBlank = (array) => {
-  let guessDiv = document.getElementById('word-to-guess');
-  console.log(array)
-
-  for (let i = 0; i < array.length; i++) {
-    const blankImage = document.createElement("img");
-    blankImage.src = `public/images/blank-title.jpg`;
-    blankImage.setAttribute("data-letter", "blank");
-    blankImage.classList.add("blank-letter", "letter");
-    guessDiv.appendChild(blankImage);
-
-  }
-}
-
-
-makeBlank(letterSplit)
+db.sequelize.sync({
+  force: false
+}).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
+});
