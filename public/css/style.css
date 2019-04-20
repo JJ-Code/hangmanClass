@@ -18,6 +18,12 @@ a {
     width: 4em;
 }
 
+#blank-space {
+    width: 10px !important;
+    height: 0px !important;
+    margin: 0 !important;    
+}
+
 
 .bottom {
     position: absolute;
