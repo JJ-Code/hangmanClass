@@ -1,4 +1,4 @@
--- Drops the todolist if it exists currently --
+-- Drops the database if it exists currently --
 DROP DATABASE IF EXISTS hangmanDB;
--- Creates the "todolist" database --
+-- Creates the "hangmanDB" database --
 CREATE DATABASE hangmanDB;
