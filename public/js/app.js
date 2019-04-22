@@ -143,7 +143,7 @@ const alreadyGuessCheck = () => {
     --numberOfLives; //decrease number of tries 
     console.log(numberOfLives)
     console.log(guessArray);
-    alert('already guess that')
+    alert('You have already guess that. Try again!')
   } //end of if 
 
   console.log(checkYorN);
@@ -152,69 +152,75 @@ const alreadyGuessCheck = () => {
 
 
 
-
-// const alreadyGuessCheck = () => {
-//   let checkYorN = guessArray.findIndex(guessArrayItem => {
-//     console.log(cliLetObj.clickedLetter);
-    
-//     console.log(guessArrayItem === cliLetObj.clickedLetter)
-//     return guessArrayItem === cliLetObj.clickedLetter
-//   }) //end ofcheckYorN
-//   console.log(checkYorN);
-
-
-//   //check if clickedLetter has a index of -1 in guessArray if it does then it has Not been gussed
-//   if (checkYorN === -1) {
-//     guessArray.push(cliLetObj)
-//     //console.log(guessArray);
-//     console.log("not in guessArray");
-//     correctLetterCheck()
-//   } else {
-//     --numberOfLives;//decrease number of tries 
-//     console.log(numberOfLives)
-//     console.log(guessArray);
-//     alert('already guess that')
-//   } //end of if 
-
-
-// }
-
 //If letter has not been guessed 
 const correctLetterCheck = () => {
   console.log('Yes correct letter check');
 
-  // wordSplitObj.forEach(function (element) {
-  //   console.log(element);
-  // });
-
-  console.log(wordSplitObj[0].letter)
-  
-  let correctYorN = wordSplitObj.map(e => e.letter).findIndex(letter => {
+  //the map creates a new array just for the wordSplitObj.letter property and then findIndex of each 
+  let correctYorN = wordSplitObj.map(obj => obj.letter).findIndex(letter => {
     console.log(letter === cliLetObj.clickedLetter)
     return letter === cliLetObj.clickedLetter
   }) //end
-  
-  
 
   //correctYorN has index of -1 this mean it is not a letter in the word 
   if (correctYorN === -1) {
+    //decrease lifr for wrong guess 
+    --numberOfLives;
 
-    alert('wrong')
+    //put wrong guess in another div 
+    const wrongDiv = document.getElementById('wrong-tiles');
+    const wrongImage = document.createElement("img");
+    wrongImage.src = `images/${cliLetObj.clickedLetter}-title.jpg`;
+    wrongImage.setAttribute("data-letter", cliLetObj.clickedLetter);
+    wrongImage.classList.add("letter");
+    wrongDiv.appendChild(wrongImage);
+
+    //remove guessed letter from avaliable guesses   
+    let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${cliLetObj.clickedLetter}']`);
+    console.log(parentEl);
+
+    parentEl.remove();
+
+    //alert('wrong')
   } else {
     correctLetterIndex();
   } //end of if 
   console.log(correctYorN);
-}//end
-
-
+} //end
 
 
 
 
 const correctLetterIndex = () => {
-  const letIndex = letterSplit.map((letter, i) => letter === cliLetObj.clickedLetter ? i : -1).filter(index => index !== -1);
+  console.log('hi');
+  console.log(wordSplitObj);
+
+
+  const letIndex = wordSplitObj.map((obj, i) => obj.letter === cliLetObj.clickedLetter ? i : -1).filter(index => index !== -1);
+  console.log(cliLetObj.clickedLetter)
   //console.log(letterSplit);
   console.log(letIndex)
+  for (let i = 0; i < letIndex.length; i++) {
+    letIndex[i]
+    // if (cliLetObj.clickedLetter === wordSplitObj[i].letter) {     }//end of if 
+    const element = letIndex[i];
+    console.log("hi " + element);
+
+    //find and replace letter 
+    console.log(wordSplitObj[i].letter);
+    let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${element}']`);
+    console.log(updateCorrectGuess);
+    updateCorrectGuess.src = `images/${wordSplitObj[element].letter}-title.jpg`
+
+    //remove guessed letter from avaliable guesses   
+    let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${cliLetObj.clickedLetter}']`);
+    console.log(parentEl);
+
+    parentEl.remove();
+
+
+  } //end of forloop 
+
 };
 
 
@@ -231,17 +237,17 @@ const getClickLetter = () => {
   abcTileDiv.addEventListener('click', function (event) {
     console.log("clicked")
     console.log(event.target.dataset.letter); // lets you see the whole property console.log(event)
-        clickedLetter = event.target.dataset.letter;
-    
+    clickedLetter = event.target.dataset.letter;
+
     cliLetObj = {
       clickedLetter: clickedLetter,
-      alreadyGuessed: false,        
-      guessCorrect: false,
+      // alreadyGuessed: false,        
+      // guessCorrect: false,
       src: `images/${clickedLetter}-title.jpg`
-    }//end of obj
+    } //end of obj
 
     console.log(cliLetObj);
-    
+
 
     alreadyGuessCheck() //mouse object location in array
   }); //end of click listner 
@@ -253,6 +259,57 @@ const getClickLetter = () => {
 //getClickLetter();
 
 //------------------------------------
+
+
+
+
+
+
+
+const makeBlank = (array) => {
+  let guessDiv = document.getElementById('word-to-guess');
+  let countID = 0;
+  console.log(array)
+
+  //let gameArray = [];
+  const isNotSpace = /^[a-zA-Z]*$/;
+  for (let i = 0; i < array.length; i++) {
+    let wordOrSpace = isNotSpace.test(array[i].letter)
+
+    if (wordOrSpace === true) {
+      // let wordsGame = "_"
+      // gameArray.push(wordsGame)
+
+      const blankImage = document.createElement("img");
+      blankImage.src = `images/blank-title.jpg`;
+      blankImage.setAttribute("data-letter", "blank");
+      blankImage.setAttribute("data-id", `${countID++}`);
+      blankImage.classList.add("blank-letter", "letter");
+      guessDiv.appendChild(blankImage);
+      // let blankImage2 = `<img src="images/blank-title.jpg" data-letter="blank" data-id="${letterInc++}" class="blank-letter letter">`
+      // console.log(blankImage2);
+
+      // guessHtml = blankImage2
+
+
+
+    } else if (wordOrSpace === false) {
+      // let wordsGameBlank = " "
+      // gameArray.push(wordsGameBlank)
+      const blankSpace = document.createElement("div");
+      blankSpace.setAttribute("id", "blank-space");
+      blankSpace.setAttribute("data-id", `${countID++}`);
+      blankSpace.classList.add("blank-letter", "letter");
+      guessDiv.appendChild(blankSpace);
+
+
+    } //end of if
+
+  } // end of for
+  //console.log(gameArray) 
+}; //end of makeBlank
+
+
 
 const wordToLetters = (value) => {
   let wordArray = value.split("")
@@ -270,6 +327,7 @@ const wordToLetters = (value) => {
   }
   console.log(wordSplitObj)
   getClickLetter(); //event listner issues 
+  makeBlank(wordSplitObj);
   return wordSplitObj;
 } //end of wordToGuess
 
@@ -277,45 +335,6 @@ const wordToLetters = (value) => {
 wordToLetters(word)
 
 
-
-
-
-const makeBlank = (array) => {
-  let guessDiv = document.getElementById('word-to-guess');
-  console.log(array)
-  let gameArray = [];
-  const isNotSpace = /^[a-zA-Z]*$/;
-  for (let i = 0; i < array.length; i++) {
-    let wordOrSpace = isNotSpace.test(array[i].letter)
-
-    if (wordOrSpace === true) {
-      let wordsGame = "_"
-      gameArray.push(wordsGame)
-
-      const blankImage = document.createElement("img");
-      blankImage.src = `images/blank-title.jpg`;
-      blankImage.setAttribute("data-letter", "blank");
-      blankImage.classList.add("blank-letter", "letter");
-      guessDiv.appendChild(blankImage);
-
-
-
-    } else if (wordOrSpace === false) {
-      let wordsGameBlank = " "
-      gameArray.push(wordsGameBlank)
-      const blankSpace = document.createElement("div");
-      blankSpace.setAttribute("id", "blank-space");
-      blankSpace.classList.add("blank-letter", "letter");
-      guessDiv.appendChild(blankSpace);
-
-
-    } //end of if
-
-  } // end of for
-  console.log(gameArray)
-}; //end of makeBlank
-
-makeBlank(wordSplitObj);
 
 
 console.log(wordSplitObj);

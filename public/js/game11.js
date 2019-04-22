@@ -27,7 +27,7 @@ makeObj(alphabet);
 //Make the alphabet image board to be clickable 
 const makeTiles = (array) => {
   let abcDiv = document.getElementById('abc-tiles');
-  console.log(array)
+  //console.log(array)
 
   for (let i = 0; i < array.length; i++) {
     const abcImage = document.createElement("img");
