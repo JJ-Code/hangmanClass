@@ -66,12 +66,19 @@ class Hangman {
 
   wordToLetters() {
     let wordArray = this._word.split("")
-    let letters = this._letters
+    console.log(wordArray)
+    let letterInc = 0;
 
     for (let i = 0; i < wordArray.length; i++) {
-      letters.push(wordArray[i]);
-      //console.log(letters)
+      let wordObj = {
+        letter: wordArray[i],
+        letterIndex: letterInc++,
+        src: `images/${wordArray[i]}-title.jpg`
+      }
+      this._letters.push(wordObj);
+      //console.log(wordObj.letterIndex)
     }
+    //console.log(this._letters)
     return this._letters
   } //end of wordToGuess
 
@@ -87,7 +94,7 @@ class Hangman {
     const isNotSpace = /^[a-zA-Z]*$/;
     let gameArray = [];
     for (let i = 0; i < this._letters.length; i++) {
-      let wordOrSpace = isNotSpace.test(this._letters[i])
+      let wordOrSpace = isNotSpace.test(this._letters[i].letter)
 
       if (wordOrSpace === true) {
         let wordsGame = "_"
@@ -96,14 +103,16 @@ class Hangman {
         const blankImage = document.createElement("img");
         blankImage.src = `images/blank-title.jpg`;
         blankImage.setAttribute("data-letter", "blank");
+        blankImage.setAttribute("data-id", `${this._letters[i].letterIndex}`);
         blankImage.classList.add("blank-letter", "letter");
-        guessDiv.appendChild(blankImage); 
+        guessDiv.appendChild(blankImage);
         //console.log("_")
       } else if (wordOrSpace === false) {
         let wordsGameBlank = " "
         gameArray.push(wordsGameBlank)
         const blankSpace = document.createElement("div");
         blankSpace.setAttribute("id", "blank-space");
+        blankSpace.setAttribute("data-id", `${this._letters[i].letterIndex}`);
         blankSpace.classList.add("blank-letter", "letter");
         guessDiv.appendChild(blankSpace);
         //console.log("a" + " ")
@@ -115,7 +124,7 @@ class Hangman {
 
 } //end of hangman
 
-const apple1 = new Hangman('Guitar Code')
+const apple1 = new Hangman('Guitar Hero')
 console.log(apple1.word)
 
 apple1.wordToLetters();
@@ -126,35 +135,34 @@ apple1.guessWordBoard();
 
 
 
-class Guess extends Hangman {
-  constructor(word, guesses) {
-    super(word);
-    this._guesses = guesses; //a
-    this._wrongLetter = [];
-    this._rightLetter = [];
-  }
+// class Guess extends Hangman {
+//   constructor(word, guesses) {
+//     super(word);
+//     this._guesses = guesses; //a
+//     this._wrongLetter = [];
+//     this._rightLetter = [];
+//       this._numOfGuess = 10;  
+//   }
 
-  userGueses(guesses) {
-    this._guesses = guesses;
-  }
+//   userGueses(guesses) {
+//     this._guesses = guesses;
+//   }
 
-  rightLetter() {
-    return lenghtofWord
-    for loop["", "", "", "", ""]
-    push this._rightLetter
-  }
-
-
-  checkGuess() {
-    if (this._guesses = this._letters) {
-      //for loop to identified index pt of letters then place it in the the rightletters at that index pt
-      place this.letterGuess = this_rightLetter;
-    } else {
-      //check if it is in the array if is not then push it 
-      push this.
-    }
-
-  }
-}
+//   rightLetter() {
+//     return lenghtofWord
+//     for loop["", "", "", "", ""]
+//     push this._rightLetter
+//   }
 
 
+//   checkGuess() {
+//     if (this._guesses = this._letters) {
+//       //for loop to identified index pt of letters then place it in the the rightletters at that index pt
+//       place this.letterGuess = this_rightLetter;
+//     } else {
+//       //check if it is in the array if is not then push it 
+//       push this.
+//     }
+
+//   }
+// }

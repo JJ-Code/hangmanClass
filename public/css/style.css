@@ -3,7 +3,7 @@
 
 body {
     margin: 0;
-    background: light;
+    background: orange;
     overflow-x: hidden;
 }
 
@@ -46,7 +46,7 @@ a {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 96em;
+    height: 105em;
 }
 
 .landing--title {
@@ -62,7 +62,7 @@ a {
     margin: 0;
     font-family: sans;
     text-transform: uppercase;
-    color: palegoldenrod;
+    color: #f31a00;
     font-size: 5em;
     letter-spacing: 0.3em;
     font-weight: 700;
@@ -71,13 +71,15 @@ a {
 
 .landing--title>h1 {
     margin-top: -10px;
-    margin-bottom: 30px;
     font-family: serif;
     color: whitesmoke;
-    font-size: 7em;
+    font-size: 5em;
     text-shadow: 3px 3px black;
 }
 
+.landing--title>p {
+    font-size: 30px;
+}
 
 
 
@@ -133,7 +135,6 @@ a {
 
 .blank-letter {
     margin-top: 50px;
-    margin-bottom: 20px;
     margin-left: 15px;
     margin-right: 15px;
 
@@ -152,7 +153,7 @@ section {
 }
 
 footer {
-    height: 10em;
+    height: 5em;
     background: orange;
     position: relative;
     width: 100%;
@@ -161,14 +162,16 @@ footer {
 
 
 
-.footer--bottom {
+/* .footer--bottom {
     width: 100%;
     position: absolute;
     height: 10%;
     bottom: 0;
-}
+} */
 
 .footer--text {
+    background: orange !important;
+    padding-top: 1em;
     font-family:
         sans;
     font-size: .8em !important;
@@ -194,7 +197,6 @@ footer {
 
 .row {
     text-align: center;
-    margin: 10px 10px 10px 10px;
 }
 
 .lives-score {
@@ -210,9 +212,9 @@ footer {
     color: GoldenRod;
 }
 
-p {
+/* p {
     font-size: 25px !important;
 
-}
+} */
 
 
