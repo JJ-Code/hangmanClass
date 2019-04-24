@@ -9,8 +9,8 @@ const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 ];
 
 const word = "Apple Cider"
-const wordSplitObj = [];
-const letterObj = [];
+const wordSplitObj = []; //aka this._letters
+const letterObj = []; //use to make the abc tiles 
 const letterSplit = ["a", "p", "p", "l", "e", " ", "p", "i", "e"]
 
 //Connect the alphabet to the image tiles
@@ -47,9 +47,10 @@ const makeTiles = (array) => {
     //console.log(tileObj)
 
   }
+    getClickLetter(); //event listner issues 
 };
 //invoke the tile for letterObj
-makeTiles(letterObj);
+
 
 // const wordToLetters = (value)=>{
 //     let wordArray = value.split("")
@@ -133,6 +134,7 @@ const alreadyGuessCheck = () => {
     console.log(guessArrayItem === cliLetObj.clickedLetter)
     return guessArrayItem === cliLetObj.clickedLetter
   }) //end ofcheckYorN
+  
   //check if cliLetObj.clickedLetter has a index of -1 in guessArray if it does then it has Not been gussed
   if (checkYorN === -1) {
     guessArray.push(clickedLetter)
@@ -195,7 +197,7 @@ const correctLetterIndex = () => {
   console.log('hi');
   console.log(wordSplitObj);
 
-
+//The letIndex creates a new array 
   const letIndex = wordSplitObj.map((obj, i) => obj.letter === cliLetObj.clickedLetter ? i : -1).filter(index => index !== -1);
   console.log(cliLetObj.clickedLetter)
   //console.log(letterSplit);
@@ -221,7 +223,7 @@ const correctLetterIndex = () => {
 
   } //end of forloop 
 
-};
+};//end of func
 
 
 
@@ -326,7 +328,7 @@ const wordToLetters = (value) => {
     //console.log(wordObj.letterIndex)
   }
   console.log(wordSplitObj)
-  getClickLetter(); //event listner issues 
+
   makeBlank(wordSplitObj);
   return wordSplitObj;
 } //end of wordToGuess
@@ -338,3 +340,4 @@ wordToLetters(word)
 
 
 console.log(wordSplitObj);
+makeTiles(letterObj);
