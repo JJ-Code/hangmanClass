@@ -18,12 +18,6 @@ let clickedLetter; //get letter clicked
 
 
 
-
-
-
-
-
-
 class Hangman {
     constructor(word) {
         this._word = word;
@@ -102,18 +96,8 @@ class Hangman {
         console.log(gameArray)
     } //end of guessWB
 
-
-
-
-
 } //end of hangman
 
-// const apple1 = new Hangman('Guitar Hero')
-// console.log(apple1.word)
-
-// apple1.wordToLetters();
-// console.log(apple1.letters)
-// apple1.guessWordBoard();
 
 
 class Guess extends Hangman {

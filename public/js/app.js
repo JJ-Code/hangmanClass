@@ -47,7 +47,7 @@ const makeTiles = (array) => {
     //console.log(tileObj)
 
   }
-    getClickLetter(); //event listner issues 
+  getClickLetter(); //event listner issues 
 };
 //invoke the tile for letterObj
 
@@ -134,7 +134,7 @@ const alreadyGuessCheck = () => {
     console.log(guessArrayItem === cliLetObj.clickedLetter)
     return guessArrayItem === cliLetObj.clickedLetter
   }) //end ofcheckYorN
-  
+
   //check if cliLetObj.clickedLetter has a index of -1 in guessArray if it does then it has Not been gussed
   if (checkYorN === -1) {
     guessArray.push(clickedLetter)
@@ -197,7 +197,7 @@ const correctLetterIndex = () => {
   console.log('hi');
   console.log(wordSplitObj);
 
-//The letIndex creates a new array 
+  //The letIndex creates a new array 
   const letIndex = wordSplitObj.map((obj, i) => obj.letter === cliLetObj.clickedLetter ? i : -1).filter(index => index !== -1);
   console.log(cliLetObj.clickedLetter)
   //console.log(letterSplit);
@@ -214,16 +214,15 @@ const correctLetterIndex = () => {
     console.log(updateCorrectGuess);
     updateCorrectGuess.src = `images/${wordSplitObj[element].letter}-title.jpg`
 
-    //remove guessed letter from avaliable guesses   
-    let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${cliLetObj.clickedLetter}']`);
-    console.log(parentEl);
-
-    parentEl.remove();
-
-
   } //end of forloop 
+  
+  //remove guessed letter from avaliable guesses   
+  let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${cliLetObj.clickedLetter}']`);
+  console.log(parentEl);
 
-};//end of func
+  parentEl.remove();
+
+}; //end of func
 
 
 
