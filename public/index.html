@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hangman Fun</title>
+  <title>Scrabble Hangman</title>
 
   <link rel="icon" href="images/word.png">
   <!-- Stylesheets-->
@@ -14,9 +14,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
     integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-  <!-- Added link to the jQuery Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 </head>
 
 <body>
@@ -24,106 +21,53 @@
   <div class="landing--container">
     <div class="landing--title">
 
-      <h1>World of Hangman!</h1>
+      <h1>Scrabble Hangman!</h1>
       <p>Click a letter</p><br />
       <button id="reset-game" class="primary-btn" onclick="reset()" type="button">Reset Game</button>
-
 
 
       <div class="row">
 
         <div class="col-md-4">
-          <h2>Number of Lives: </h2>
-          <h2 class="lives-score"> </h2>
-          <div></div>
+          <h2>Number of Lives: <span class="lives-score"> </span> </h2>
+          <h2>Timer: <span class="timer"> </span> </h2>
         </div>
 
         <div class="col-md-4">
-          <h2>Clue: </h2>
-          <h2 class="clue"></h2>
+          <h2>Clue: <span class="clue"> </span> </h2>
         </div>
         <div class="col-md-4">
-          <h2>Score Tracker</h2>
-          <h3>Wins: </h3>
-          <h3 class="win-score"> </h3>
-
-          <h3>Losses: </h3>
-          <h3 class="loss-score"></h3>
+          <!-- <h2>Score Tracker</h2> -->
+          <h2>Wins: <span class="win-score"> </span></h2>
+          <h2>Losses: <span class="loss-score"></h2>
         </div>
       </div>
 
 
 
+      <div id="game-area">
 
+        <!-- ------------------- -->
+        <!-- create space for blank letters -->
+        <div id="word-to-guess"></div>
 
-      <!-- ------------------- -->
-      <!-- create space for blank letters -->
-      <div id="word-to-guess"></div>
+        <br /><br />
+        <div class="landing--line"> </div>
+        <!-- this is to create clicking board -->
+        <h2 id="dom-update"></h2>
+        <div id="abc-tiles"></div>
 
-      <br /><br />
-      <div class="landing--line"> </div>
-      <!-- this is to create clicking board -->
-      <div id="abc-tiles"></div>
-      <!-- <img class="letter" src="public/images/a-title.jpg">
-      <img class="letter" src="public/images/c-title.jpg"> -->
-      
-      <!-- <div id="search-area">
-        <form id="giphy-form">
-          <input type="text" id="giphy-input"><br> <br>
-          <input class="primary-btn" id="submit-giphy" type="submit" value="Submit">
-        </form>
-      </div> -->
+        <div class="landing--line"> </div>
+        <br /> <br />
+        <!-- this is to where the wrong tiles will go-->
+        <div id="wrong-tiles"></div>
 
-      <div class="landing--line"> </div>
-         <br /> <br />
-      <div id="wrong-tiles"></div>
+      </div>
 
-    </div>
+    </div> <!-- end of landing--title -->
 
-  </div>
+  </div> <!-- end of landing--container -->
 
-
-  <!-- Main Content Area -->
-  <!-- <div class="container">
-        <section>
-            <div class="content">
-                <div class="row">
-                    <h1>Step 2 - Click on giphy to match SCORE to WIN! </h1> <br /><br />
-                    <div class="col-md-4">
-                        <h2>Try to match</h2>
-                        <h2 class="computer-score"> </h2>
-
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <h2>Your current score: </h2>
-                        <h2 class="user-score"></h2>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>Score Tracker</h2>
-                        <h3>Wins: </h3>
-                        <h3 class="win-score"> </h3>
-
-                        <h3>Losses: </h3>
-                        <h3 class="loss-score"></h3>
-                    </div>
-                </div>
-
-                GIF RESULTS GAME      -->
-  <!-- <div class="row">
-
-                    <div id="giphy-view"></div>
-
-                </div>
-
-
-            </div>
-        </section>
-
-  
-    </div> -->
-  <!-- end of container -->
 
   <!-- This is the footer -->
   <footer>

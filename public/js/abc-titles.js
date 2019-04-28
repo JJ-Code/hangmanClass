@@ -481,7 +481,7 @@ class Guess extends Hangman {
         let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${this._letterGuess}']`);
         console.log(parentEl);
         parentEl.remove();
-    };//end of func
+    }; //end of func
 
     //update guessedYet to true 
     updateGuessed2Yes() {
@@ -493,43 +493,6 @@ class Guess extends Hangman {
             return this._lettersSplit[value].guessedYet
         });
     }; //end of func
-
-
-    // correctLetterIndex() {
-    //     //The letIndex creates a new array of all the index values for that correct letter 
-    //     const letIndex = this._lettersSplit.map((obj, i) => obj.letter === this._letterGuess ? i : -1).filter(index => index !== -1);
-    //     console.log(this._letterGuess)
-
-    //     console.log(letIndex)
-
-    //     //this is dynamically updating the DOM and not the object with the image
-    //     for (let i = 0; i < letIndex.length; i++) {
-    //         // const element = letIndex[i];
-    //         // console.log("hi " + element);
-
-    //         //find and replace letter 
-    //         let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${letIndex[i]}']`);
-    //         console.log(updateCorrectGuess);
-    //         updateCorrectGuess.src = `images/${this._lettersSplit[letIndex[i]].letter}-title.jpg`
-    //     } //end of forloop 
-
-
-    //     //update guessedYet to true 
-    //     const updateGuessed2Yes = letIndex.map((value) => {
-    //         //console.log(value)
-    //         this._lettersSplit[value].guessedYet = true;
-    //         console.log(this._lettersSplit[value].guessedYet);
-    //         return this._lettersSplit[value].guessedYet
-    //     })
-    //     //console.log(updateGuessed2Yes)
-
-    //     this.checkIfAllLetterGussed();
-
-    //     //remove guessed letter from avaliable guesses   
-    //     let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${this._letterGuess}']`);
-    //     console.log(parentEl);
-    //     parentEl.remove();
-    // }; //end of func
 
     checkIfAllLetterGussed() {
         const allLettersGuessed = this._lettersSplit.every(index => index.guessedYet === true);
@@ -610,21 +573,42 @@ const getWordToGuess = () => {
 
 
 const winOrLoss = () => {
+    const disableGame = () => {
+        clearDivs();
+        //This clears the abc-tile id div with the event property 
+        // const clearABCdiv = event.path[1]
+        // clearABCdiv.innerHTML = ""
+        //Update the dom to tell user to hit the reset button 
+        const domUpdateDiv = document.querySelector("#dom-update");
+        domUpdateDiv.innerHTML = "Click the RESET button to play again"
+
+        //console.log(event);
+    }
+
     if (choosenWord.getEndGame === true && choosenWord.getLives === 0) {
         losses++;
         alert("You did not win, loser!");
         document.querySelector(".loss-score").innerHTML = losses;
+        disableGame();
+
     } //end of if - this will let users know if they lost 
     else if (choosenWord.getEndGame === true) {
         wins++;
         alert("You win!");
         document.querySelector(".win-score").innerHTML = wins;
+        disableGame();
+
     } //end of else if - this will let users know if they won 
 };
 
+
+let abcTileDiv = document.querySelector("#abc-tiles");
 //Create event listener for titles 
 const getClickLetter = () => {
-    let abcTileDiv = document.querySelector("#abc-tiles");
+
+    console.log("hi YOU HI ");
+    console.log(choosenWord);
+
     let clickedLetter; //get letter clicked
     abcTileDiv.addEventListener('click', function (event) {
         console.log("clicked")
@@ -635,20 +619,41 @@ const getClickLetter = () => {
         choosenWord.alreadyGuessCheck() //mouse object location in array
         winOrLoss(); //check if game is over 
     }); //end of click listner 
+
 };
 
-
-const reset = async () => {
-    choosenWord;
+const clearDivs = () => {
     const wrongDivClear = document.getElementById('wrong-tiles');
     const abcDivClear = document.getElementById('abc-tiles');
     const guessDivClear = document.getElementById('word-to-guess')
     wrongDivClear.innerHTML = "";
     abcDivClear.innerHTML = "";
     guessDivClear.innerHTML = "";
+}
+
+//this is the onclick function is tie to the rest button 
+const reset = async () => {
+    choosenWord;
+    //clear the divs 
+    clearDivs();
+    const domUpdateDiv = document.querySelector("#dom-update");
+    domUpdateDiv.innerHTML = ""
     //invoke play game again 
     play();
 } //end of reset 
+
+// const disableGame = () => {
+//     if (choosenWord.getEndGame === false) {
+//         console.log("hi YOU HI ");
+//         console.log(choosenWord);
+
+//     } else {
+//                 console.log(choosenWord);
+//         const domUpdateDiv = document.querySelector("#dom-update");
+//         domUpdateDiv.innerHTML = "Click the RESET button to play again"
+//     }
+
+// };
 
 const play = () => {
     getWordToGuess();
@@ -656,6 +661,9 @@ const play = () => {
     makeTiles(makeObj());
 
 }
+
+
+
 
 
 //invoke the makeTiles function. makeTiles takes a callback of a function as a argument 

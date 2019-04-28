@@ -14,14 +14,14 @@ a {
 
 
 .letter {
-    height: 5em;
-    width: 4em;
+    height: 4.5em;
+    width: 3.5em;
 }
 
 #blank-space {
     width: 10px !important;
     height: 0px !important;
-    margin: 0 !important;    
+    margin: 0 !important;
 }
 
 
@@ -63,7 +63,7 @@ a {
     font-family: sans;
     text-transform: uppercase;
     color: #f31a00;
-    font-size: 5em;
+    font-size: 1.8em;
     letter-spacing: 0.3em;
     font-weight: 700;
     text-shadow: 1px 1px rgb(131, 129, 129);
@@ -73,16 +73,9 @@ a {
     margin-top: -50px;
     font-family: serif;
     color: whitesmoke;
-    font-size: 5em;
+    font-size: 4.2em;
     text-shadow: 3px 3px black;
 }
-
-.landing--title>p {
-    font-size: 30px;
-}
-
-
-
 
 .primary-btn {
     padding: 10px;
@@ -185,9 +178,10 @@ footer {
 
 /* section CSS*/
 
-.col-md-4>h2{
+.col-md-4>h2 {
+    font-size: 1.6em;
     color: blanchedalmond;
-     text-shadow: 3px 3px black;
+    text-shadow: 3px 3px black;
 }
 
 .col-md-4>h3 {
@@ -200,22 +194,33 @@ footer {
     text-align: center;
 }
 
-.lives-score {
-    color: #DC143C;
+.lives-score,
+.win-score,
+.loss-score,
+.timer {
+    margin-left: 10px;
+    font-size: 1.2em;
+    color: salmon;
+    text-shadow: 3px 3px black;
 }
 
 .clue {
     color: #2E8B57;
 }
 
-.win-score,
+#dom-update {
+    padding-top: 30px;
+    font-size: 2em;
+    color: salmon;
+    text-shadow: 3px 3px black;
+}
+
+/* .win-score,
 .loss-score {
     color: GoldenRod;
-}
+} */
 
 /* p {
     font-size: 25px !important;
 
 } */
-
-
