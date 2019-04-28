@@ -1,4 +1,4 @@
-module.exports = [
+const ArrWords = [
     "The Shawshank Redemption",
     "The Godfather",
     "The Godfather: Part II",
@@ -238,3 +238,6 @@ module.exports = [
     "Gangs of Wasseypur",
     "The Handmaiden",
 ];
+
+
+ //export default ArrWords;
