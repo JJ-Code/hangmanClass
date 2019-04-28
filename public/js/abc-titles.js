@@ -5,12 +5,10 @@
 //console.log(words);
 
 
-// const b = require('./words.js')
-// console.log(b);
-
-
-
+// Game play variables
 let wordToPlay;
+let wins = 0;
+let losses = 0;
 
 
 class Hangman {
@@ -19,6 +17,8 @@ class Hangman {
         this._lettersSplit = []; //[a, p, p, l, e]
         this._lengthWord = 0;
         this._isNotSpace = /^[a-zA-Z]*$/;
+        this._numberOfLives = 5;
+        this._endGame = false;
     }
 
     get word() {
@@ -29,17 +29,19 @@ class Hangman {
         return this._lettersSplit;
     }
 
-    get lengthWord() {
-        return this._lengthWord;
+    get getEndGame() {
+        return this._endGame;
     }
 
-    get isNotSpace() {
-        return this._isNotSpace;
+
+    get getLives() {
+        return this._numberOfLives;
     }
 
-    getLength() {
-        return this._lengthWord = this._lettersSplit.length;
-    } //end of getLength 
+    setEndGame() {
+        return this._endGame = true;
+    }
+
 
 
     wordToLetters() {
@@ -82,13 +84,13 @@ class Hangman {
         let guessDiv = document.getElementById('word-to-guess');
         //isNotSpace detects if the play word is a letter or space
         //const isNotSpace = /^[a-zA-Z]*$/;
-        let gameArray = [];
+        //let gameArray = [];
         for (let i = 0; i < this._lettersSplit.length; i++) {
             let wordOrSpace = this._isNotSpace.test(this._lettersSplit[i].letter)
 
             if (wordOrSpace === true) {
-                let wordsGame = "_"
-                gameArray.push(wordsGame)
+                //let wordsGame = "_"
+                //gameArray.push(wordsGame)
 
                 const blankImage = document.createElement("img");
                 blankImage.src = `images/blank-title.jpg`;
@@ -98,8 +100,8 @@ class Hangman {
                 guessDiv.appendChild(blankImage);
                 //console.log("_")
             } else if (wordOrSpace === false) {
-                let wordsGameBlank = " "
-                gameArray.push(wordsGameBlank)
+                //let wordsGameBlank = " "
+                //gameArray.push(wordsGameBlank)
                 const blankSpace = document.createElement("div");
                 blankSpace.setAttribute("id", "blank-space");
                 blankSpace.setAttribute("data-id", `${this._lettersSplit[i].letterIndex}`);
@@ -109,7 +111,7 @@ class Hangman {
             } //end of if
 
         } //end of for
-        console.log(gameArray)
+        //console.log(gameArray)
     } //end of guessWB
 
 } //end of hangman
@@ -121,7 +123,6 @@ class Guess extends Hangman {
         super(word);
         this._letterGuess = ""; //a
         this._guessArray = [];
-        this._numberOfLives = 10;
     }
 
     get guesses() {
@@ -130,10 +131,6 @@ class Guess extends Hangman {
 
     get guessArray() {
         return this._guessArray;
-    }
-
-    get guessArray() {
-        return this._numberOfLives;
     }
 
     setGuess(value) {
@@ -152,11 +149,18 @@ class Guess extends Hangman {
             console.log(this._guessArray);
             console.log("not in guessArray");
             this.correctLetterCheck()
-        } else {
-            --this._numberOfLives; //decrease number of tries 
+        }
+        //else statement should not fire
+        else {
+            --this._numberOfLives; //decrease number of tries  
             console.log(this._numberOfLives)
             console.log(this._guessArray);
-            alert('You have already guess that. Try again!')
+            if (this._numberOfLives === 0) {
+                this.setEndGame();
+            } else {
+                alert('You have already guess that. Try again!')
+            }
+
         } //end of if 
 
         console.log(checkYorN);
@@ -184,6 +188,7 @@ class Guess extends Hangman {
         if (correctYorN === -1) {
             //decrease lifr for wrong guess 
             --this._numberOfLives;
+            console.log(this._numberOfLives);
 
             //put wrong guess in another div 
             const wrongDiv = document.getElementById('wrong-tiles');
@@ -196,8 +201,12 @@ class Guess extends Hangman {
             //remove guessed letter from avaliable guesses   
             let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${this._letterGuess}']`);
             console.log(parentEl);
-
             parentEl.remove();
+
+            //check to see if you have loss game 
+            if (this._numberOfLives === 0) {
+                this.setEndGame();
+            }
 
             //alert('wrong')
         } else {
@@ -209,44 +218,32 @@ class Guess extends Hangman {
 
 
     correctLetterIndex() {
-        console.log('hi');
-        //console.log(this._lettersSplit[0].guessedYet = true);
-
-        //The letIndex creates a new array 
+        //The letIndex creates a new array of all the index values for that correct letter 
         const letIndex = this._lettersSplit.map((obj, i) => obj.letter === this._letterGuess ? i : -1).filter(index => index !== -1);
         console.log(this._letterGuess)
 
-        console.log(letIndex)
+        //console.log(letIndex)
+
+        //this is dynamically updating the DOM and not the object with the image
+        for (let i = 0; i < letIndex.length; i++) {
+            // const element = letIndex[i];
+            // console.log("hi " + element);
+
+            //find and replace letter 
+            let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${letIndex[i]}']`);
+            console.log(updateCorrectGuess);
+            updateCorrectGuess.src = `images/${this._lettersSplit[letIndex[i]].letter}-title.jpg`
+        } //end of forloop 
+
 
         //update guessedYet to true 
-        const updateGuessed2Yes = letIndex.map((value, index, array) => {
+        const updateGuessed2Yes = letIndex.map((value) => {
             //console.log(value)
             this._lettersSplit[value].guessedYet = true;
             console.log(this._lettersSplit[value].guessedYet);
             return this._lettersSplit[value].guessedYet
         })
-
         //console.log(updateGuessed2Yes)
-        //console.log(this._lettersSplit);
-        //console.log(this._lettersSplit[0].guessedYet);
-
-        //this is dynamically updating the DOM and not the object with the image
-        for (let i = 0; i < letIndex.length; i++) {
-            //letIndex[i]
-            // if (this._letterGuess === this._lettersSplit[i].letter) {     }//end of if 
-            // const element = letIndex[i];
-            // console.log("hi " + element);
-
-            //find and replace letter 
-
-            //console.log(this._lettersSplit[i].letter);
-            console.log("man");
-            console.log(this._lettersSplit[i].letter + " " + this._lettersSplit[i].guessedYet);
-
-            let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${letIndex[i]}']`);
-            console.log(updateCorrectGuess);
-            updateCorrectGuess.src = `images/${this._lettersSplit[letIndex[i]].letter}-title.jpg`
-        } //end of forloop 
 
 
         this.checkIfAllLetterGussed();
@@ -260,15 +257,17 @@ class Guess extends Hangman {
 
 
     checkIfAllLetterGussed() {
-        //console.log(this._lettersSplit);
-
         const allLettersGuessed = this._lettersSplit.every(index => index.guessedYet === true);
-        console.log("awesome");
         console.log(allLettersGuessed);
-        //if (allLettersGuessed === true)
+        if (allLettersGuessed === true) {
+            this.setEndGame();
+        }
 
- 
+
     } //end of check 
+
+
+
 
 
 
@@ -317,22 +316,42 @@ const makeTiles = (funcArr) => {
         abcDiv.appendChild(abcImage);
     }
     getClickLetter(); //have to envoke after the tiles are created 
-    getWordToGuess(); // Make images clickable and grab word to play words.js at the same time
+    getWordToGuess();
+    // Make images clickable and grab word to play words.js at the same time
 }; //end of makeTiles
+
+
 
 
 //Grab word to play words.js at the same time
 const getWordToGuess = () => {
-    const word = 'Soda'
+    const word = 'Soda One'
     //const word = create random function to grab random word from words.js
     wordToPlay = new Guess(word)
     const playGame = wordToPlay.wordToLetters(word);
-
     console.log(playGame)
-    //console.log(aa);
+    console.log(wordToPlay.getLives);
 
     return wordToPlay;
 };
+
+
+const winOrLoss = () => {
+    console.log("hi there");
+
+    if (wordToPlay.getEndGame === true && wordToPlay.getLives === 0) {
+        losses++;
+        alert("You did not win, loser!");
+        document.querySelector(".loss-score").innerHTML = losses;
+
+    } //end of if - this will let users know if they lost 
+    else if (wordToPlay.getEndGame === true) {
+        wins++;
+        alert("You win!");
+        document.querySelector(".win-score").innerHTML = wins;
+
+    } //end of else if - this will let users know if they won 
+}
 
 //Create event listener for titles 
 const getClickLetter = () => {
@@ -345,10 +364,17 @@ const getClickLetter = () => {
         const setGuess = wordToPlay.setGuess(clickedLetter);
         console.log(setGuess);
         wordToPlay.alreadyGuessCheck() //mouse object location in array
+        winOrLoss();//check if game is over 
 
     }); //end of click listner 
 
 };
+
+const reset = () => {
+    makeObj();
+    makeTiles(makeObj());
+};
+
 
 
 
