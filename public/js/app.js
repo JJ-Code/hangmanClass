@@ -14,9 +14,9 @@ const letterObj = []; //use to make the abc tiles
 const letterSplit = ["a", "p", "p", "l", "e", " ", "p", "i", "e"]
 
 //Connect the alphabet to the image tiles
-const makeObj = () => {
-  for (let i = 0; i < alphabet.length; i++) {
-    let abcPic = `images/${alphabet[i]}-title.jpg`;
+const makeObj = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    let abcPic = `images/${array[i]}-title.jpg`;
     const tileObj = {
       letter: alphabet[i],
       src: abcPic
@@ -215,7 +215,7 @@ const correctLetterIndex = () => {
     updateCorrectGuess.src = `images/${wordSplitObj[element].letter}-title.jpg`
 
   } //end of forloop 
-  
+
   //remove guessed letter from avaliable guesses   
   let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${cliLetObj.clickedLetter}']`);
   console.log(parentEl);

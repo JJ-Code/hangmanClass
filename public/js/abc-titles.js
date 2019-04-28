@@ -1,21 +1,16 @@
 //const Guess = require("../js/game11");
-//var words = require("./words.js");
+//var words = require("words.js");
 // import words from "./words.js"
-// import words from './words';
+//import words from 'words';
 //console.log(words);
 
 
+// const b = require('./words.js')
+// console.log(b);
 
 
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-    't', 'u', 'v', 'w', 'x', 'y', 'z'
-];
 
-const letterObj = []; //help make letters 
-const letterSplit = ["a", "p", "p", "l", "e", " ", "p", "i", "e"]
-let clickedLetter; //get letter clicked
-
+let wordToPlay;
 
 
 class Hangman {
@@ -23,6 +18,7 @@ class Hangman {
         this._word = word;
         this._lettersSplit = []; //[a, p, p, l, e]
         this._lengthWord = 0;
+        this._isNotSpace = /^[a-zA-Z]*$/;
     }
 
     get word() {
@@ -37,6 +33,10 @@ class Hangman {
         return this._lengthWord;
     }
 
+    get isNotSpace() {
+        return this._isNotSpace;
+    }
+
     getLength() {
         return this._lengthWord = this._lettersSplit.length;
     } //end of getLength 
@@ -46,13 +46,29 @@ class Hangman {
         let wordArray = this._word.split("")
         console.log(wordArray)
         let letterInc = 0;
+        let wordObj;
 
         for (let i = 0; i < wordArray.length; i++) {
-            let wordObj = {
-                letter: wordArray[i].toLowerCase(),
-                letterIndex: letterInc++,
-                src: `images/${wordArray[i].toLowerCase()}-title.jpg`
-            }
+            let wordOrSpace = this._isNotSpace.test(wordArray[i])
+
+            if (wordOrSpace === true) {
+                wordObj = {
+                    letter: wordArray[i].toLowerCase(),
+                    letterIndex: letterInc++,
+                    guessedYet: false,
+                    src: `images/${wordArray[i].toLowerCase()}-title.jpg`
+                };
+
+            } //end of if 
+            else {
+                wordObj = {
+                    letter: wordArray[i].toLowerCase(),
+                    letterIndex: letterInc++,
+                    guessedYet: true,
+                };
+
+            } //end of else 
+
             this._lettersSplit.push(wordObj);
             //console.log(this._lettersSplit.letterIndex)
         }
@@ -65,10 +81,10 @@ class Hangman {
     makeBlank() {
         let guessDiv = document.getElementById('word-to-guess');
         //isNotSpace detects if the play word is a letter or space
-        const isNotSpace = /^[a-zA-Z]*$/;
+        //const isNotSpace = /^[a-zA-Z]*$/;
         let gameArray = [];
         for (let i = 0; i < this._lettersSplit.length; i++) {
-            let wordOrSpace = isNotSpace.test(this._lettersSplit[i].letter)
+            let wordOrSpace = this._isNotSpace.test(this._lettersSplit[i].letter)
 
             if (wordOrSpace === true) {
                 let wordsGame = "_"
@@ -144,6 +160,8 @@ class Guess extends Hangman {
         } //end of if 
 
         console.log(checkYorN);
+        console.log(this._lettersSplit);
+
 
     }; //end of alreadyGuessCheck
 
@@ -161,9 +179,6 @@ class Guess extends Hangman {
             console.log(letter === this._letterGuess)
             return letter === this._letterGuess
         }); //end
-
-
-
 
         //correctYorN has index of -1 this mean it is not a letter in the word 
         if (correctYorN === -1) {
@@ -186,6 +201,7 @@ class Guess extends Hangman {
 
             //alert('wrong')
         } else {
+            //if letter is in array invoke this
             this.correctLetterIndex();
         } //end of if 
         console.log(correctYorN);
@@ -194,37 +210,68 @@ class Guess extends Hangman {
 
     correctLetterIndex() {
         console.log('hi');
-        console.log(this._lettersSplit);
+        //console.log(this._lettersSplit[0].guessedYet = true);
 
         //The letIndex creates a new array 
         const letIndex = this._lettersSplit.map((obj, i) => obj.letter === this._letterGuess ? i : -1).filter(index => index !== -1);
         console.log(this._letterGuess)
-        //console.log(letterSplit);
+
         console.log(letIndex)
+
+        //update guessedYet to true 
+        const updateGuessed2Yes = letIndex.map((value, index, array) => {
+            //console.log(value)
+            this._lettersSplit[value].guessedYet = true;
+            console.log(this._lettersSplit[value].guessedYet);
+            return this._lettersSplit[value].guessedYet
+        })
+
+        //console.log(updateGuessed2Yes)
+        //console.log(this._lettersSplit);
+        //console.log(this._lettersSplit[0].guessedYet);
+
+        //this is dynamically updating the DOM and not the object with the image
         for (let i = 0; i < letIndex.length; i++) {
             //letIndex[i]
             // if (this._letterGuess === this._lettersSplit[i].letter) {     }//end of if 
-            const element = letIndex[i];
-            console.log("hi " + element);
+            // const element = letIndex[i];
+            // console.log("hi " + element);
 
             //find and replace letter 
-            console.log(this._lettersSplit[i].letter);
-            let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${element}']`);
+
+            //console.log(this._lettersSplit[i].letter);
+            console.log("man");
+            console.log(this._lettersSplit[i].letter + " " + this._lettersSplit[i].guessedYet);
+
+            let updateCorrectGuess = document.querySelector(`#word-to-guess > img[data-id='${letIndex[i]}']`);
             console.log(updateCorrectGuess);
-            updateCorrectGuess.src = `images/${this._lettersSplit[element].letter}-title.jpg`
-
-
-
-
+            updateCorrectGuess.src = `images/${this._lettersSplit[letIndex[i]].letter}-title.jpg`
         } //end of forloop 
+
+
+        this.checkIfAllLetterGussed();
 
         //remove guessed letter from avaliable guesses   
         let parentEl = document.querySelector(`#abc-tiles > img[data-letter='${this._letterGuess}']`);
         console.log(parentEl);
-
         parentEl.remove();
 
     }; //end of func
+
+
+    checkIfAllLetterGussed() {
+        //console.log(this._lettersSplit);
+
+        const allLettersGuessed = this._lettersSplit.every(index => index.guessedYet === true);
+        console.log("awesome");
+        console.log(allLettersGuessed);
+        //if (allLettersGuessed === true)
+
+ 
+    } //end of check 
+
+
+
 
 } //End of Guess class 
 
@@ -234,30 +281,38 @@ class Guess extends Hangman {
 
 //Connect the alphabet to the image tiles
 const makeObj = () => {
+    const letObjArr = [];
+    const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+        't', 'u', 'v', 'w', 'x', 'y', 'z'
+    ];
+
     for (let i = 0; i < alphabet.length; i++) {
         let abcPic = `images/${alphabet[i]}-title.jpg`;
         const tileObj = {
             letter: alphabet[i],
             src: abcPic
         }
-        letterObj.push(tileObj);
+        letObjArr.push(tileObj);
         //console.log(tileObj)
-    }
+    } //end of forloop
+    return letObjArr
 } //close of makeObj 
-//invoke the object by calling alphabet
-makeObj(alphabet);
+
+//invoke the function to make a obj to be use later on 
+makeObj();
 
 
 
-//Make the alphabet image board to be clickable 
-const makeTiles = (array) => {
+//Make the alphabet image board 
+const makeTiles = (funcArr) => {
     let abcDiv = document.getElementById('abc-tiles');
-    //console.log(array)
+    //console.log(funcArr)
 
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < funcArr.length; i++) {
         const abcImage = document.createElement("img");
-        abcImage.src = array[i].src;
-        abcImage.setAttribute("data-letter", array[i].letter);
+        abcImage.src = funcArr[i].src;
+        abcImage.setAttribute("data-letter", funcArr[i].letter);
         abcImage.classList.add("letter");
         abcDiv.appendChild(abcImage);
     }
@@ -265,33 +320,42 @@ const makeTiles = (array) => {
     getWordToGuess(); // Make images clickable and grab word to play words.js at the same time
 }; //end of makeTiles
 
-var wordToPlay;
+
 //Grab word to play words.js at the same time
 const getWordToGuess = () => {
-    const word = 'Apple Pie'
+    const word = 'Soda'
     //const word = create random function to grab random word from words.js
     wordToPlay = new Guess(word)
     const playGame = wordToPlay.wordToLetters(word);
+
     console.log(playGame)
+    //console.log(aa);
+
     return wordToPlay;
 };
 
 //Create event listener for titles 
 const getClickLetter = () => {
     let abcTileDiv = document.querySelector("#abc-tiles");
+    let clickedLetter; //get letter clicked
     abcTileDiv.addEventListener('click', function (event) {
         console.log("clicked")
-        console.log(event.target.dataset.letter); // lets you see the whole property console.log(event)
+        // lets you see the whole property console.log(event)
         clickedLetter = event.target.dataset.letter;
         const setGuess = wordToPlay.setGuess(clickedLetter);
-        console.log(clickedLetter);
         console.log(setGuess);
         wordToPlay.alreadyGuessCheck() //mouse object location in array
+
     }); //end of click listner 
 
 };
 
 
 
-//invoke the tile for letterObj
-makeTiles(letterObj);
+
+
+//invoke the makeTiles function. makeTiles takes a callback of a function as a argument 
+makeTiles(makeObj());
+
+
+//Play game 
