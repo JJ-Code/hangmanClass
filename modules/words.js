@@ -279,6 +279,6 @@ const createObj = () => {
 createObj();
 
 
-console.log(guessWordsArr);
+//console.log(guessWordsArr);
 
-export default guessWordsArr;
+module.exports = guessWordsArr;

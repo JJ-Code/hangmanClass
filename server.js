@@ -2,6 +2,8 @@
 // =============================================================
 const express = require("express");
 const bodyParser = require("body-parser");
+const logger = require("morgan");
+
 
 // Sets up the Express App
 // =============================================================
@@ -11,6 +13,9 @@ const PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 const db = require("./models");
 
+
+// Use morgan logger for logging requests
+app.use(logger("dev"));
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

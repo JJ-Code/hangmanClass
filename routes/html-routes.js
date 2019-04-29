@@ -3,6 +3,7 @@
 // We need to include the path package to get the correct file path for our html
 // ===============================================================================
 var path = require("path");
+var test = require("../seeders/test");
 
 // ===============================================================================
 // ROUTING
@@ -24,4 +25,8 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "/../public/index.html"));
     });
 
-};
+    app.get("/api/test", function (req, res) {
+        res.sendFile(path.join(__dirname, "/../public/index.html"));
+    });
+
+}

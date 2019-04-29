@@ -3,8 +3,9 @@
 module.exports = {
     up: function (queryInterface, Sequelize) {
 
-        // Add seeded burgers to database (note that the date needs to be manually added here)
-        return queryInterface.bulkInsert('words', [{
+        // Add seeded to database (note that the date needs to be manually added here)
+        return queryInterface.bulkInsert('words', [
+            {
                 word_selected: "Big Mac",
                 clue: "YUM YUM",
                 used: false,
@@ -59,7 +60,7 @@ module.exports = {
 
     down: function (queryInterface, Sequelize) {
 
-        // Remove the seeded burgers (note the "{truncate: true}", which resets the primary keys)
+        // Remove the seeded (note the "{truncate: true}", which resets the primary keys)
         return queryInterface.bulkDelete('words', null, {
             truncate: true
         });
