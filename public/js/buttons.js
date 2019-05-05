@@ -1,5 +1,3 @@
-let theClock
-
 const getClue = async () => {
     choosenWord;
     console.log(choosenWord._word);
@@ -33,10 +31,7 @@ const getClue = async () => {
         console.log(error.message)
     } //end of catch
 
-
-} //end of reset 
-
-
+} //end of getClue 
 
 
 //this is the onclick function is tie to the rest button - no reset() invoke needed
@@ -46,31 +41,9 @@ const reset = async () => {
     clearDivs();
     const domUpdateDiv = document.querySelector("#dom-update");
     domUpdateDiv.innerHTML = ""
-
-        			clearInterval(theClock);
+    //clear clock
+    clearInterval(theClock);
     //invoke play game again 
     play();
-    timerWrapper();
 
 } //end of reset 
-
-//let timerId = setInterval(() => alert('tick'), 2000);
-
-
-
-const timerWrapper = () => {
-    const timerId = document.getElementById('timer');
-    let counter = 0;
-    theClock = setInterval(() => {
-        if (counter >= 0) {
-            counter++;
-        }
-        timerId.innerHTML = counter
-
-    }, 1000);
-
-    //console.log(theClock);
-    //timerWrapper()
-}
-
-timerWrapper()

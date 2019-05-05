@@ -3,6 +3,7 @@
 let choosenWord;
 let wins = 0;
 let losses = 0;
+let theClock
 
 
 const wordsToGuess = () => {
@@ -397,6 +398,24 @@ const getClickLetter = () => {
 
 };
 
+
+const timerWrapper = () => {
+    const timerId = document.getElementById('timer');
+    let counter = 0;
+    theClock = setInterval(() => {
+        if (counter >= 0) {
+            counter++;
+        }
+        timerId.innerHTML = counter
+
+    }, 1000);
+
+    //console.log(theClock);
+    //timerWrapper()
+}
+
+
+
 const clearDivs = () => {
     const wrongDivClear = document.getElementById('wrong-tiles');
     const abcDivClear = document.getElementById('abc-tiles');
@@ -408,7 +427,7 @@ const clearDivs = () => {
     guessDivClear.innerHTML = "";
     clue.innerHTML = "";
     timerId.innerHTML = "";
-    			clearInterval(theClock);
+
 }
 
 
@@ -417,7 +436,7 @@ const play = () => {
     wordsToGuess()
     makeObj();
     makeTiles(makeObj());
-
+    timerWrapper()
 }
 
 
