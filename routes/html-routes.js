@@ -3,6 +3,7 @@
 // We need to include the path package to get the correct file path for our html
 // ===============================================================================
 var path = require("path");
+var db = require("../models");
 
 // ===============================================================================
 // ROUTING
@@ -20,8 +21,9 @@ module.exports = function (app) {
     // });
 
     // If no matching route is found default to home
-    app.get("*", function (req, res) {
+    app.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "/../public/index.html"));
+response.send('I love Treehouse!');
     });
 
-};
+}

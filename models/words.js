@@ -1,6 +1,7 @@
-module.exports = function (sequelize, DataTypes) {
-    var Word = sequelize.define("Word", {
-        text: {
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    const Word = sequelize.define('Word', {
+        word_selected: {
             type: DataTypes.STRING,
             // AllowNull is a flag that restricts a todo from being entered if it doesn't
             // have a text value
@@ -12,12 +13,12 @@ module.exports = function (sequelize, DataTypes) {
         },
         clue: {
             type: DataTypes.STRING,
-                // AllowNull is a flag that restricts a todo from being entered if it doesn't
-                // have a text value
+            // AllowNull is a flag that restricts a todo from being entered if it doesn't
+            // have a text value
             allowNull: false,
-                // len is a validation that checks that our todo is between 1 and 140 characters
+            // len is a validation that checks that our todo is between 1 and 140 characters
             validate: {
-            len: [1, 140]
+                len: [1, 140]
             }
         },
         used: {
@@ -26,6 +27,17 @@ module.exports = function (sequelize, DataTypes) {
             // it isn't supplied one
             defaultValue: false
         }
-    });
+    }, {});
+    //Word.associate = function (models) {
+    // associations can be defined here
+    //};
     return Word;
 };
+
+
+
+
+
+
+
+

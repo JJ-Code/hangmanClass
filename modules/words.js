@@ -1,4 +1,6 @@
-const ArrWords = [
+const guessWordsArr = [];
+
+const arrWords = [
     "The Shawshank Redemption",
     "The Godfather",
     "The Godfather: Part II",
@@ -39,7 +41,7 @@ const ArrWords = [
     "The Pianist",
     "The Departed",
     "Rear Window",
-    "Terminator 2: Judgment Day",
+    "Terminator",
     "Back to the Future",
     "Whiplash",
     "Gladiator",
@@ -72,7 +74,6 @@ const ArrWords = [
     "Return of the Jedi",
     "Braveheart",
     "Reservoir Dogs",
-    "M",
     "Requiem for a Dream",
     "Amélie",
     "Like Stars on Earth",
@@ -85,12 +86,11 @@ const ArrWords = [
     "Taxi Driver",
     "To Kill a Mockingbird",
     "Full Metal Jacket",
-    "2001: A Space Odyssey",
+    "A Space Odyssey",
     "Singin' in the Rain",
-    "Toy Story 3",
+    "Toy Story",
     "The Sting",
     "Toy Story",
-    "3 Idiots",
     "Bicycle Thieves",
     "Inglourious Basterds",
     "The Kid",
@@ -168,7 +168,7 @@ const ArrWords = [
     "Come and See",
     "Rang De Basanti",
     "The Passion of Joan of Arc",
-    "Kill Bill: Vol. 1",
+    "Kill Bill",
     "How to Train Your Dragon",
     "Logan",
     "Mary and Max",
@@ -240,4 +240,43 @@ const ArrWords = [
 ];
 
 
- //export default ArrWords;
+//export default ArrWords;
+
+
+// const createMovieSeed = () => {
+//     let wordObjTable;
+//     for (let i = 0; i < arrWords.length; i++) {
+//         wordObjTable = {
+//             word_selected: arrWords[i],
+//             clue: "It is a movie",
+//             used: false,
+//             createdAt: new Date(),
+//             updatedAt: new Date()
+//         };
+//     }; //end of for loop
+//     guessWordsArr.push(wordObjTable);
+// }
+
+
+const createObj = () => {
+    //console.log(arrWords)
+    arrWords.map((value) => {
+        wordObjTable = {
+            word_selected: value,
+            clue: "It is a movie",
+            used: false,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+        //console.log(wordObjTable)
+        //return wordObjTable;
+        return guessWordsArr.push(wordObjTable)
+    });
+};
+
+createObj();
+
+
+//console.log(guessWordsArr);
+
+module.exports = guessWordsArr;

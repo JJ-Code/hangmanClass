@@ -1,257 +1,33 @@
-//const Guess = require("../js/game11");
-//var ArrWords = require("./words.js");
-// console.log(Words);
-
-//import ArrWords from "./words"
-//import words from 'words';
-//console.log(ArrWords);
-const arrWords = [
-    "The Shawshank Redemption",
-    "The Godfather",
-    "The Godfather: Part II",
-    "The Dark Knight",
-    "12 Angry Men",
-    "Schindler's List",
-    "Pulp Fiction",
-    "The Good, the Bad and the Ugly",
-    "Fight Club",
-    "The Lord of the Rings",
-    "Forrest Gump",
-    "The Empire Strikes Back",
-    "Inception",
-    "The Lord of the Rings",
-    "One Flew Over the Cuckoo's Nest",
-    "Goodfellas",
-    "The Matrix",
-    "Seven Samurai",
-    "Star Wars A New Hope",
-    "City of God",
-    "The Silence of the Lambs",
-    "It's a Wonderful Life",
-    "Life Is Beautiful",
-    "The Usual Suspects",
-    "Léon: The Professional",
-    "Saving Private Ryan",
-    "Spirited Away",
-    "American History X",
-    "Once Upon a Time in the West",
-    "Interstellar",
-    "Psycho",
-    "The Green Mile",
-    "Casablanca",
-    "City Lights",
-    "The Intouchables",
-    "Modern Times",
-    "Raiders of the Lost Ark",
-    "The Pianist",
-    "The Departed",
-    "Rear Window",
-    "Terminator 2: Judgment Day",
-    "Back to the Future",
-    "Whiplash",
-    "Gladiator",
-    "The Prestige",
-    "The Lion King",
-    "Memento",
-    "Apocalypse Now",
-    "Alien",
-    "The Great Dictator",
-    "Sunset Boulevard",
-    "Cinema Paradiso",
-    "The Lives of Others",
-    "Grave of the Fireflies",
-    "Paths of Glory",
-    "Django Unchained",
-    "The Shining",
-    "WALL·E",
-    "American Beauty",
-    "The Dark Knight Rises",
-    "Princess Mononoke",
-    "Oldboy",
-    "Aliens",
-    "Witness for the Prosecution",
-    "Once Upon a Time in America",
-    "Das Boot",
-    "Citizen Kane",
-    "Dangal",
-    "Vertigo",
-    "North by Northwest",
-    "Return of the Jedi",
-    "Braveheart",
-    "Reservoir Dogs",
-    "M",
-    "Requiem for a Dream",
-    "Amélie",
-    "Like Stars on Earth",
-    "A Clockwork Orange",
-    "Your Name",
-    "Lawrence of Arabia",
-    "Dunkirk",
-    "Double Indemnity",
-    "Amadeus",
-    "Taxi Driver",
-    "To Kill a Mockingbird",
-    "Full Metal Jacket",
-    "2001: A Space Odyssey",
-    "Singin' in the Rain",
-    "Toy Story 3",
-    "The Sting",
-    "Toy Story",
-    "3 Idiots",
-    "Bicycle Thieves",
-    "Inglourious Basterds",
-    "The Kid",
-    "Snatch",
-    "Monty Python and the Holy Grail",
-    "Good Will Hunting",
-    "For a Few Dollars More",
-    "The Hunt",
-    "L.A. Confidential",
-    "Scarface",
-    "The Apartment",
-    "Metropolis",
-    "Rashomon",
-    "A Separation",
-    "Indiana Jones",
-    "My Father and My Son",
-    "Yojimbo",
-    "All About Eve",
-    "Up",
-    "Batman Begins",
-    "Some Like It Hot",
-    "Unforgiven",
-    "Downfall",
-    "Die Hard",
-    "Raging Bull",
-    "Heat",
-    "Children of Heaven",
-    "The Third Man",
-    "The Great Escape",
-    "Chinatown",
-    "Ikiru",
-    "Pan's Labyrinth",
-    "My Neighbor Totoro",
-    "Ran",
-    "The Gold Rush",
-    "Inside Out",
-    "Incendies",
-    "The Secret in Their Eyes",
-    "On the Waterfront",
-    "Judgment at Nuremberg",
-    "The Bridge on the River Kwai",
-    "Howl's Moving Castle",
-    "Room",
-    "Blade Runner",
-    "The Seventh Seal",
-    "Mr. Smith Goes to Washington",
-    "Casino",
-    "A Beautiful Mind",
-    "The Elephant Man",
-    "Wild Strawberries",
-    "V for Vendetta",
-    "The Wolf of Wall Street",
-    "The General",
-    "Warrior",
-    "Trainspotting",
-    "Dial M for Murder",
-    "Andrei Rublev",
-    "Gran Torino",
-    "Sunrise",
-    "Gone with the Wind",
-    "The Deer Hunter",
-    "The Bandit",
-    "Fargo",
-    "The Sixth Sense",
-    "La La Land",
-    "The Thing",
-    "The Big Lebowski",
-    "No Country for Old Men",
-    "Finding Nemo",
-    "Tokyo Story",
-    "Hacksaw Ridge",
-    "Cool Hand Luke",
-    "There Will Be Blood",
-    "Rebecca",
-    "Come and See",
-    "Rang De Basanti",
-    "The Passion of Joan of Arc",
-    "Kill Bill: Vol. 1",
-    "How to Train Your Dragon",
-    "Logan",
-    "Mary and Max",
-    "Gone Girl",
-    "Into the Wild",
-    "Shutter Island",
-    "A Wednesday",
-    "It Happened One Night",
-    "Life of Brian",
-    "Wild Tales",
-    "Platoon",
-    "The Wages of Fear",
-    "Hotel Rwanda",
-    "Network",
-    "Rush",
-    "In the Name of the Father",
-    "Stand by Me",
-    "Persona",
-    "The 400 Blows",
-    "Ben-Hur",
-    "The Grand Budapest Hotel",
-    "12 Years a Slave",
-    "Mad Max: Fury Road",
-    "Memories of Murder",
-    "Spotlight",
-    "Million Dollar Baby",
-    "Jurassic Park",
-    "Stalker",
-    "Amores Perros",
-    "The Truman Show",
-    "The Maltese Falcon",
-    "Hachi: A Dog's Tale",
-    "Paper Moon",
-    "The Princess Bride",
-    "The Nights of Cabiria",
-    "Before Sunrise",
-    "Munna Bhai M.B.B.S.",
-    "Prisoners",
-    "Harry Potter",
-    "The Grapes of Wrath",
-    "Rocky",
-    "Catch Me If You Can",
-    "Diabolique",
-    "Touch of Evil",
-    "Gandhi",
-    "Star Wars: The Force Awakens",
-    "Donnie Darko",
-    "Monsters, Inc.",
-    "Annie Hall",
-    "The Terminator",
-    "Barry Lyndon",
-    "The Bourne Ultimatum",
-    "Sholay",
-    "The Wizard of Oz",
-    "Groundhog Day",
-    "La Haine",
-    "Twelve Monkeys",
-    "The Best Years of Our Lives",
-    "Infernal Affairs",
-    "Paris, Texas",
-    "The Help",
-    "In the Mood for Love",
-    "Beauty and the Beast",
-    "The Battle of Algiers",
-    "Dog Day Afternoon",
-    "Pirates of the Caribbean",
-    "Gangs of Wasseypur",
-    "The Handmaiden",
-];
-
 // Game play variables
 let wordToPlay;
 let choosenWord;
 let wins = 0;
 let losses = 0;
 
+
+const wordsToGuess = () => {
+    console.log('you first');
+    fetch("/api/words").then(response => response.json())
+        .then((result) => {
+            //console.log(result)
+            arrWordsDB = result.map((value) => {
+                //console.log(value.word_selected)
+                return value.word_selected
+            });
+            //console.log(arrWordsDB);
+            const randIndex = Math.floor(Math.random() * arrWordsDB.length);
+            const shuffleWord = arrWordsDB[randIndex]
+            //console.log(shuffleWord);
+            choosenWord = shuffleWord;
+            console.log(choosenWord);
+            tee();
+            getWordToGuess();
+            return choosenWord;
+        }).catch(error => console.log('error:', error));
+} //end of getAllWords
+const tee = () => {
+    console.log(choosenWord);
+}
 
 class Hangman {
     constructor(word) {
@@ -550,15 +326,19 @@ const makeTiles = (funcArr) => {
     }
 }; //end of makeTiles
 
-const randomChoice = arr => {
-    const randIndex = Math.floor(Math.random() * arr.length);
-    return arr[randIndex];
-};
+
+
+
+// const randomChoice = arr => {
+//     const randIndex = Math.floor(Math.random() * arr.length);
+//     return arr[randIndex];
+// };
 
 //Grab word to play words.js at the same time
 const getWordToGuess = () => {
     //const word = 'Soda One'
-    choosenWord = randomChoice(arrWords);
+    //invoking database request. it will return a array of obj and randomChoice will get random word from array 
+    //choosenWord = randomChoice(arrWordsDB);
     console.log(choosenWord);
 
     //const word = create random function to grab random word from words.js
@@ -631,7 +411,7 @@ const clearDivs = () => {
     guessDivClear.innerHTML = "";
 }
 
-//this is the onclick function is tie to the rest button 
+//this is the onclick function is tie to the rest button - no reset() invoke needed
 const reset = async () => {
     choosenWord;
     //clear the divs 
@@ -656,7 +436,7 @@ const reset = async () => {
 // };
 
 const play = () => {
-    getWordToGuess();
+    wordsToGuess()
     makeObj();
     makeTiles(makeObj());
 
@@ -666,7 +446,9 @@ const play = () => {
 
 
 
+
+
 //invoke the makeTiles function. makeTiles takes a callback of a function as a argument 
-play();
+play()
 //Have to invoke after the tiles are created. This need to be independent after the game play. 
 getClickLetter();
