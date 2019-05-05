@@ -402,10 +402,13 @@ const clearDivs = () => {
     const abcDivClear = document.getElementById('abc-tiles');
     const guessDivClear = document.getElementById('word-to-guess')
     const clue = document.getElementById('clue-plot');
+    const timerId = document.getElementById('timer');
     wrongDivClear.innerHTML = "";
     abcDivClear.innerHTML = "";
     guessDivClear.innerHTML = "";
     clue.innerHTML = "";
+    timerId.innerHTML = "";
+    			clearInterval(theClock);
 }
 
 
