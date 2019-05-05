@@ -40,7 +40,9 @@ a {
 .landing--container {
     position: relative;
     margin: 0;
-    background-image: url('../images/world.jpeg');
+    background-image: url('../images/hollywood.jpg');
+    background-color: rgba(255, 255, 255, 0.18);
+    background-blend-mode: lighten;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -180,8 +182,8 @@ footer {
 
 .col-md-4>h2 {
     font-size: 1.6em;
-    color: blanchedalmond;
-    text-shadow: 3px 3px black;
+    color: rgb(33, 33, 33);
+    text-shadow: 1px 1px rgb(227, 221, 221);
 }
 
 .col-md-4>h3 {
@@ -201,7 +203,7 @@ footer {
     margin-left: 10px;
     font-size: 1.2em;
     color: salmon;
-    text-shadow: 3px 3px black;
+    text-shadow: 1px 1px black;
 }
 
 .clue {

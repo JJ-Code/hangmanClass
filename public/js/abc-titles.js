@@ -20,14 +20,10 @@ const wordsToGuess = () => {
             //console.log(shuffleWord);
             choosenWord = shuffleWord;
             console.log(choosenWord);
-            tee();
             getWordToGuess();
             return choosenWord;
         }).catch(error => console.log('error:', error));
 } //end of getAllWords
-const tee = () => {
-    console.log(choosenWord);
-}
 
 class Hangman {
     constructor(word) {
@@ -434,6 +430,7 @@ const reset = async () => {
 //     }
 
 // };
+
 
 const play = () => {
     wordsToGuess()
