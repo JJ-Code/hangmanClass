@@ -23,25 +23,36 @@
 
       <h1>Movie Scrabble Hangman!</h1>
       <p>Click a letter</p><br />
-      <button id="reset-game" class="primary-btn" onclick="reset()" type="button">Reset Game</button>
-
+      <div id="clue">
+        <button id="get-clue" class="primary-btn" onclick="getClue()" type="button">Get Clue</button>
+        <div id="got-clue">
+          <h3> <span id="clue-plot"> </span> </h3>
+        </div>
+        <!-- <h2>Clue: <span class="clue"> </span> </h2> -->
+      </div>
 
       <div class="row">
 
         <div class="col-md-4">
           <h2>Number of Lives: <span class="lives-score"> </span> </h2>
-          <h2>Timer: <span class="timer"> </span> </h2>
         </div>
 
         <div class="col-md-4">
-          <h2>Clue: <span class="clue"> </span> </h2>
+          <h2>Timer: <span class="timer"> </span> </h2>
         </div>
+
+
         <div class="col-md-4">
           <!-- <h2>Score Tracker</h2> -->
           <h2>Wins: <span class="win-score"> </span></h2>
           <h2>Losses: <span class="loss-score"></h2>
         </div>
+
+
+
       </div>
+      <!-- end of row -->
+
 
 
 
@@ -54,7 +65,9 @@
         <br /><br />
         <div class="landing--line"> </div>
         <!-- this is to create clicking board -->
+
         <h2 id="dom-update"></h2>
+  <button id="reset-game" class="primary-btn" onclick="reset()" type="button">Reset Game</button> 
         <div id="abc-tiles"></div>
 
         <div class="landing--line"> </div>
@@ -81,8 +94,8 @@
   <!-- Added link to the asset script -->
   <!-- <script type="text/javascript" src="js/app.js"> </script> -->
   <script type="text/javascript" src="js/abc-titles.js"> </script>
-    <!-- <script type="text/javascript" src="js/fetch.js"> </script> -->
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+  <script type="text/javascript" src="js/buttons.js"> </script>
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 
 
 </body>

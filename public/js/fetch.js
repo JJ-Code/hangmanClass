@@ -65,3 +65,12 @@ let arrWordsDBk;
 
 
 getAllWords();
+
+
+const getClue = async () => {
+    choosenWord;
+    console.log('CLICKED');
+
+    console.log(choosenWord);
+
+} //end of reset 

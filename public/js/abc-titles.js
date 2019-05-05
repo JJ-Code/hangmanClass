@@ -1,5 +1,5 @@
 // Game play variables
-let wordToPlay;
+//let wordToPlay;
 let choosenWord;
 let wins = 0;
 let losses = 0;
@@ -29,7 +29,6 @@ class Hangman {
     constructor(word) {
         this._word = word;
         this._lettersSplit = []; //[a, p, p, l, e]
-        this._lengthWord = 0;
         this._isNotSpace = /^[a-zA-Z]*$/;
         this._numberOfLives = 5;
         this._endGame = false;
@@ -402,34 +401,13 @@ const clearDivs = () => {
     const wrongDivClear = document.getElementById('wrong-tiles');
     const abcDivClear = document.getElementById('abc-tiles');
     const guessDivClear = document.getElementById('word-to-guess')
+    const clue = document.getElementById('clue-plot');
     wrongDivClear.innerHTML = "";
     abcDivClear.innerHTML = "";
     guessDivClear.innerHTML = "";
+    clue.innerHTML = "";
 }
 
-//this is the onclick function is tie to the rest button - no reset() invoke needed
-const reset = async () => {
-    choosenWord;
-    //clear the divs 
-    clearDivs();
-    const domUpdateDiv = document.querySelector("#dom-update");
-    domUpdateDiv.innerHTML = ""
-    //invoke play game again 
-    play();
-} //end of reset 
-
-// const disableGame = () => {
-//     if (choosenWord.getEndGame === false) {
-//         console.log("hi YOU HI ");
-//         console.log(choosenWord);
-
-//     } else {
-//                 console.log(choosenWord);
-//         const domUpdateDiv = document.querySelector("#dom-update");
-//         domUpdateDiv.innerHTML = "Click the RESET button to play again"
-//     }
-
-// };
 
 
 const play = () => {
@@ -438,11 +416,6 @@ const play = () => {
     makeTiles(makeObj());
 
 }
-
-
-
-
-
 
 
 //invoke the makeTiles function. makeTiles takes a callback of a function as a argument 
