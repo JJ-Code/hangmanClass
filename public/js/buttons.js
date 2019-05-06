@@ -1,13 +1,14 @@
+let resultsClue;
+
 const getClue = async () => {
-    choosenWord;
-    console.log(choosenWord._word);
-    let movie = choosenWord._word.toLowerCase().replace(/ /g, "+")
+    // choosenWord;
+    // console.log(choosenWord._word);
     //let ttt = choosenWord._word.split(' ').join('+')
+
+    let movie = choosenWord._word.toLowerCase().replace(/ /g, "+")
     console.log(movie);
 
     let clue = document.getElementById('clue-plot');
-    console.log(choosenWord);
-
     const urlToFetch = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece";
     //console.log(urlToFetch)
     try {
@@ -17,12 +18,13 @@ const getClue = async () => {
             //code to excute with json response 
             const jsonResponse = await response.json();
             // var results = jsonResponse.Plot;
-            let results = jsonResponse.Actors;
+            resultsClue = jsonResponse.Actors;
             console.log(jsonResponse)
-            console.log(results)
+            console.log(resultsClue)
 
-            clue.innerHTML = results
-
+            clue.innerHTML = resultsClue
+            sendRequest();
+            return resultsClue
         } else {
             throw new Error("Request Failed!");
         } //end of else 
@@ -31,7 +33,46 @@ const getClue = async () => {
         console.log(error.message)
     } //end of catch
 
-} //end of getClue 
+
+}; //end of getClue 
+
+
+const sendRequest = async () => {
+    console.log(resultsClue);
+
+    let wordSelected = choosenWord._word;
+    const urlToPost = "/api/words/cluepost";
+    try {
+        const response = await fetch(urlToPost, {
+                method: "PUT",
+                body: JSON.stringify({
+                    // id: 200,
+                    wordSelected: wordSelected,
+                    clue: resultsClue
+                })
+            } //end of arg obj
+        ) //end of fetch
+        if (response.ok) {
+            const jsonResponse = await response.json()
+            return jsonResponse
+        }
+        throw new Error('Request failed!')
+
+    } //end of try
+    catch (error) {
+        console.log(error)
+    }
+    //console.log(urlToPost);
+
+}; //end of sendRequest 
+
+
+
+
+
+
+
+
 
 
 //this is the onclick function is tie to the rest button - no reset() invoke needed
@@ -46,4 +87,4 @@ const reset = async () => {
     //invoke play game again 
     play();
 
-} //end of reset 
+}; //end of reset 

@@ -1,5 +1,4 @@
 // Game play variables
-//let wordToPlay;
 let choosenWord;
 let wins = 0;
 let losses = 0;
@@ -46,7 +45,6 @@ class Hangman {
     get getEndGame() {
         return this._endGame;
     }
-
 
     get getLives() {
         return this._numberOfLives;
@@ -186,7 +184,6 @@ class Guess extends Hangman {
     }; //end of alreadyGuessCheck
 
 
-
     //If letter has not been guessed 
     correctLetterCheck() {
         console.log('Yes correct letter check');
@@ -323,13 +320,6 @@ const makeTiles = (funcArr) => {
 }; //end of makeTiles
 
 
-
-
-// const randomChoice = arr => {
-//     const randIndex = Math.floor(Math.random() * arr.length);
-//     return arr[randIndex];
-// };
-
 //Grab word to play words.js at the same time
 const getWordToGuess = () => {
     //const word = 'Soda One'
@@ -409,12 +399,9 @@ const timerWrapper = () => {
         timerId.innerHTML = counter
 
     }, 1000);
-
     //console.log(theClock);
     //timerWrapper()
 }
-
-
 
 const clearDivs = () => {
     const wrongDivClear = document.getElementById('wrong-tiles');
@@ -427,7 +414,6 @@ const clearDivs = () => {
     guessDivClear.innerHTML = "";
     clue.innerHTML = "";
     timerId.innerHTML = "";
-
 }
 
 

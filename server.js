@@ -16,6 +16,8 @@ const db = require("./models");
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
+
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

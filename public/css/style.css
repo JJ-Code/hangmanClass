@@ -41,8 +41,8 @@ a {
     position: relative;
     margin: 0;
     background-image: url('../images/clip3.jpg');
-    background-color: rgba(255, 255, 255, 0.28);
-    background-blend-mode: lighten;
+    /* background-color: rgba(255, 255, 255, 0.28);
+    background-blend-mode: lighten; */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -64,11 +64,11 @@ a {
     margin: 0;
     font-family: sans;
     text-transform: uppercase;
-    color: salmon;
+    color: whitesmoke;
     font-size: 1.8em;
     letter-spacing: 0.3em;
     font-weight: 700;
-    text-shadow: 1px 1px rgb(131, 129, 129);
+    text-shadow: 2px 2px rgb(28, 28, 28);
 }
 
 .landing--title>h1 {
@@ -174,14 +174,14 @@ footer {
 
 .col-md-4>h2 {
     font-size: 1.8em;
-    color: wheat;
+    color: whitesmoke;
     text-shadow: 2px 1px rgb(52, 52, 52);
 }
 
 .col-md-4>h3 {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: salmon;
-    text-shadow: 3px 3px black;
+    text-shadow: 5px 5px black;
 }
 
 .row {
