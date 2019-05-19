@@ -78,6 +78,7 @@ const sendRequest = async () => {
 //this is the onclick function is tie to the rest button - no reset() invoke needed
 const reset = async () => {
     choosenWord;
+    clearInterval(theClock);
     //clear the divs 
     clearDivs();
     const domUpdateDiv = document.querySelector("#dom-update");

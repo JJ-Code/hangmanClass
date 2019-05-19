@@ -2,7 +2,7 @@
 let choosenWord;
 let wins = 0;
 let losses = 0;
-let theClock
+let theClock;
 
 
 const wordsToGuess = () => {
@@ -340,6 +340,7 @@ const getWordToGuess = () => {
 
 const winOrLoss = () => {
     const disableGame = () => {
+        clearInterval(theClock);
         clearDivs();
         //This clears the abc-tile id div with the event property 
         // const clearABCdiv = event.path[1]
