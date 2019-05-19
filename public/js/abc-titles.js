@@ -1,8 +1,8 @@
 // Game play variables
-let wordToPlay;
 let choosenWord;
 let wins = 0;
 let losses = 0;
+let theClock;
 
 
 const wordsToGuess = () => {
@@ -20,20 +20,15 @@ const wordsToGuess = () => {
             //console.log(shuffleWord);
             choosenWord = shuffleWord;
             console.log(choosenWord);
-            tee();
             getWordToGuess();
             return choosenWord;
         }).catch(error => console.log('error:', error));
 } //end of getAllWords
-const tee = () => {
-    console.log(choosenWord);
-}
 
 class Hangman {
     constructor(word) {
         this._word = word;
         this._lettersSplit = []; //[a, p, p, l, e]
-        this._lengthWord = 0;
         this._isNotSpace = /^[a-zA-Z]*$/;
         this._numberOfLives = 5;
         this._endGame = false;
@@ -50,7 +45,6 @@ class Hangman {
     get getEndGame() {
         return this._endGame;
     }
-
 
     get getLives() {
         return this._numberOfLives;
@@ -190,7 +184,6 @@ class Guess extends Hangman {
     }; //end of alreadyGuessCheck
 
 
-
     //If letter has not been guessed 
     correctLetterCheck() {
         console.log('Yes correct letter check');
@@ -327,13 +320,6 @@ const makeTiles = (funcArr) => {
 }; //end of makeTiles
 
 
-
-
-// const randomChoice = arr => {
-//     const randIndex = Math.floor(Math.random() * arr.length);
-//     return arr[randIndex];
-// };
-
 //Grab word to play words.js at the same time
 const getWordToGuess = () => {
     //const word = 'Soda One'
@@ -354,6 +340,7 @@ const getWordToGuess = () => {
 
 const winOrLoss = () => {
     const disableGame = () => {
+        clearInterval(theClock);
         clearDivs();
         //This clears the abc-tile id div with the event property 
         // const clearABCdiv = event.path[1]
@@ -402,50 +389,42 @@ const getClickLetter = () => {
 
 };
 
+
+const timerWrapper = () => {
+    const timerId = document.getElementById('timer');
+    let counter = 0;
+    theClock = setInterval(() => {
+        if (counter >= 0) {
+            counter++;
+        }
+        timerId.innerHTML = counter
+
+    }, 1000);
+    //console.log(theClock);
+    //timerWrapper()
+}
+
 const clearDivs = () => {
     const wrongDivClear = document.getElementById('wrong-tiles');
     const abcDivClear = document.getElementById('abc-tiles');
     const guessDivClear = document.getElementById('word-to-guess')
+    const clue = document.getElementById('clue-plot');
+    const timerId = document.getElementById('timer');
     wrongDivClear.innerHTML = "";
     abcDivClear.innerHTML = "";
     guessDivClear.innerHTML = "";
+    clue.innerHTML = "";
+    timerId.innerHTML = "";
 }
 
-//this is the onclick function is tie to the rest button - no reset() invoke needed
-const reset = async () => {
-    choosenWord;
-    //clear the divs 
-    clearDivs();
-    const domUpdateDiv = document.querySelector("#dom-update");
-    domUpdateDiv.innerHTML = ""
-    //invoke play game again 
-    play();
-} //end of reset 
 
-// const disableGame = () => {
-//     if (choosenWord.getEndGame === false) {
-//         console.log("hi YOU HI ");
-//         console.log(choosenWord);
-
-//     } else {
-//                 console.log(choosenWord);
-//         const domUpdateDiv = document.querySelector("#dom-update");
-//         domUpdateDiv.innerHTML = "Click the RESET button to play again"
-//     }
-
-// };
 
 const play = () => {
     wordsToGuess()
     makeObj();
     makeTiles(makeObj());
-
+    timerWrapper()
 }
-
-
-
-
-
 
 
 //invoke the makeTiles function. makeTiles takes a callback of a function as a argument 

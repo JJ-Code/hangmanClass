@@ -40,7 +40,9 @@ a {
 .landing--container {
     position: relative;
     margin: 0;
-    background-image: url('../images/world.jpeg');
+    background-image: url('../images/clip3.jpg');
+    /* background-color: rgba(255, 255, 255, 0.28);
+    background-blend-mode: lighten; */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,19 +64,19 @@ a {
     margin: 0;
     font-family: sans;
     text-transform: uppercase;
-    color: #f31a00;
+    color: whitesmoke;
     font-size: 1.8em;
     letter-spacing: 0.3em;
     font-weight: 700;
-    text-shadow: 1px 1px rgb(131, 129, 129);
+    text-shadow: 2px 2px rgb(28, 28, 28);
 }
 
 .landing--title>h1 {
     margin-top: -50px;
     font-family: serif;
-    color: whitesmoke;
     font-size: 4.2em;
-    text-shadow: 3px 3px black;
+    color: wheat;
+    text-shadow: 5px 1px rgb(23, 20, 20);
 }
 
 .primary-btn {
@@ -154,14 +156,6 @@ footer {
 }
 
 
-
-/* .footer--bottom {
-    width: 100%;
-    position: absolute;
-    height: 10%;
-    bottom: 0;
-} */
-
 .footer--text {
     background: orange !important;
     padding-top: 1em;
@@ -179,15 +173,15 @@ footer {
 /* section CSS*/
 
 .col-md-4>h2 {
-    font-size: 1.6em;
-    color: blanchedalmond;
-    text-shadow: 3px 3px black;
+    font-size: 1.8em;
+    color: whitesmoke;
+    text-shadow: 2px 1px rgb(52, 52, 52);
 }
 
 .col-md-4>h3 {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: salmon;
-    text-shadow: 3px 3px black;
+    text-shadow: 5px 5px black;
 }
 
 .row {
@@ -201,11 +195,13 @@ footer {
     margin-left: 10px;
     font-size: 1.2em;
     color: salmon;
-    text-shadow: 3px 3px black;
+    text-shadow: 1px 1px black;
 }
 
-.clue {
-    color: #2E8B57;
+#clue-plot {
+    font-size: 1em;
+    margin-top: 20px;
+    color: salmon;
 }
 
 #dom-update {

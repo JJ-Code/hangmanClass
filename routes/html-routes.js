@@ -3,7 +3,6 @@
 // We need to include the path package to get the correct file path for our html
 // ===============================================================================
 var path = require("path");
-var db = require("../models");
 
 // ===============================================================================
 // ROUTING
@@ -16,14 +15,12 @@ module.exports = function (app) {
     // In each of the below cases the user is shown an HTML page of content
     // ---------------------------------------------------------------------------
 
-    // app.get("/survey", function (req, res) {
-    //     res.sendFile(path.join(__dirname, "/../public/survey.html"));
-    // });
-
-    // If no matching route is found default to home
     app.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "/../public/index.html"));
-response.send('I love Treehouse!');
     });
 
+    // If no matching route is found default to home. The * breaks api routes
+    // app.get("*", function (req, res) {
+    //     res.sendFile(path.join(__dirname, "/../public/index.html"));
+    // });
 }

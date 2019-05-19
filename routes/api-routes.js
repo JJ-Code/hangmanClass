@@ -38,6 +38,30 @@ module.exports = function (app) {
         });
     });
 
+
+    // PUT route for updating posts
+    app.put("/api/words/cluepost/", function (req, res) {
+        // const test = res.json(req.body);
+        const json = JSON.parse(req.body);
+        console.log(json.clue)
+        console.log(json.wordSelected)
+        console.log(json);
+
+        console.log('hi there');
+        db.Word.update({
+            clue: json.clue
+        }, {
+            where: {
+                word_selected: json.wordSelected
+            }
+        }).then((dbWord) => {
+            res.json(dbWord);
+            console.log("Done");
+        });
+    });
+
+
+
     app.post("/api/Words", function (req, res) {
         db.Word.create(req.body).then(function (dbWord) {
             res.json(dbWord);
@@ -54,7 +78,7 @@ module.exports = function (app) {
         });
     });
 
-};
+}; //end of module
 
 
 
