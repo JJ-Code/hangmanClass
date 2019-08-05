@@ -267,6 +267,7 @@ class Guess extends Hangman {
         const allLettersGuessed = this._lettersSplit.every(index => index.guessedYet === true);
         console.log(allLettersGuessed);
         if (allLettersGuessed === true) {
+            
             this.setEndGame();
         } //end of if 
     } //end of check 
@@ -354,7 +355,7 @@ const winOrLoss = () => {
 
     if (choosenWord.getEndGame === true && choosenWord.getLives === 0) {
         losses++;
-        alert("You did not win, loser!");
+        alert(`You did not win, loser! The correct word is ${choosenWord.word}`);
         document.querySelector(".loss-score").innerHTML = losses;
         disableGame();
 

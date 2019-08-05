@@ -1,4 +1,4 @@
-const guessWordsArr = [];
+//const guessWordsArr = [];
 
 const arrWords = [
     "The Shawshank Redemption",
@@ -243,24 +243,29 @@ const arrWords = [
 //export default ArrWords;
 
 
-// const createMovieSeed = () => {
-//     let wordObjTable;
-//     for (let i = 0; i < arrWords.length; i++) {
+// const createObj = () => {
+//     //console.log(arrWords)
+//     arrWords.map((value) => {
 //         wordObjTable = {
-//             word_selected: arrWords[i],
+//             word_selected: value,
 //             clue: "It is a movie",
 //             used: false,
 //             createdAt: new Date(),
 //             updatedAt: new Date()
 //         };
-//     }; //end of for loop
-//     guessWordsArr.push(wordObjTable);
-// }
+//         console.log(wordObjTable)
+//         //return wordObjTable;
+//         return guessWordsArr.push(wordObjTable)
+//     });
+// };
 
+// createObj();
+
+
+//console.log(guessWordsArr);
 
 const createObj = () => {
-    //console.log(arrWords)
-    arrWords.map((value) => {
+    return arrWords.map(value => {
         wordObjTable = {
             word_selected: value,
             clue: "It is a movie",
@@ -268,15 +273,15 @@ const createObj = () => {
             createdAt: new Date(),
             updatedAt: new Date()
         };
-        //console.log(wordObjTable)
-        //return wordObjTable;
-        return guessWordsArr.push(wordObjTable)
+        return wordObjTable;
     });
 };
 
-createObj();
+const guessWordsArr = createObj();
 
-
-//console.log(guessWordsArr);
+// const logs = ()=>{
+//     console.log(guessWordsArr);
+// }
+// logs();
 
 module.exports = guessWordsArr;

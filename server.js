@@ -7,9 +7,8 @@ const logger = require("morgan");
 
 // Sets up the Express App
 // =============================================================
-const app = express();
 const PORT = process.env.PORT || 8080;
-
+const app = express();
 // Requiring our models for syncing
 const db = require("./models");
 
