@@ -18,11 +18,11 @@
   },
   "homepage": "https://github.com/JJ-Code/hangmanClass#readme",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "browserify": "^16.2.3",
     "config.json": "0.0.4",
     "eslint": "^5.16.0",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "fs": "0.0.1-security",
     "morgan": "^1.9.1",
     "mysql2": "^1.6.5",
